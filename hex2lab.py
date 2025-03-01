@@ -44,7 +44,7 @@ def input_rgb():
     hex_color = '#{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
     st.sidebar.write(f'RGB:　({r}, {g}, {b})')
     st.sidebar.write(f'RGB:　{hex_color}')
-    
+
     img = Image.new('RGB', (300, 100), (240, 242, 246))
     draw = ImageDraw.Draw(img)
     draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
@@ -84,9 +84,9 @@ def make_figure(fig, hex_color, l, a, b):
         text=[hex_color],
         hovertemplate=(
             f"HEX:{hex_color}<br>"
-            f"L*:{1:.2f}<br>"
-            f"a*:{a:2f}<br>"
-            f"b*:{b:2f}<extra></extra>"   
+            f"L*: {l:6.2f}<br>"
+            f"a*: {a:6.2f}<br>"
+            f"b*: {b:6.2f}<extra></extra>"   
         )
         #textposition="top center"
     ))
@@ -122,7 +122,7 @@ def init_colors():
         # "#4c4c4c", "#272564", "#2234c7", "#2413b9", "#f3190f",
         # "#b90b0d", "#a61415", "#10a251", "#068d62", "#084523",
         # "#25a479", "#4dbce9", "#2772e5", "#da38c2", "#a900b5",
-        # "#6c019d", "#ff 80b3", "#fc4477", "#f4f673", "#d4fcfb",
+        # "#6c019d", "#ff80b3", "#fc4477", "#f4f673", "#d4fcfb",
         # "#fcd4fe", "#f8f9b0", "#feddf6", "#dae4fe", "#eafde7"
     ]
     return hex_colors
