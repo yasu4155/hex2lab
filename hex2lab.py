@@ -27,7 +27,7 @@ def main():
         # === 3Dグラフで可視化 ===
         fig = go.Figure()
         for i, (l, a, b) in zip(st.session_state.hex_colors, lab_colors):
-            fig = make_figure(fig, i, l, a, b)
+            fig = plot_graph(fig, i, l, a, b)
 
         # === Streamlitで3Dグラフ表示 ===
         st.subheader("L\*a\*b\* 色空間 3D可視化")
@@ -43,7 +43,7 @@ def input_rgb():
     b = st.sidebar.slider('Blue',  0, 255, 128,)
     hex_color = '#{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
     st.sidebar.write(f'RGB:　({r}, {g}, {b})')
-    st.sidebar.write(f'RGB:　{hex_color}')
+    st.sidebar.write(f'HEX:　{hex_color}')
 
     img = Image.new('RGB', (300, 100), (240, 242, 246))
     draw = ImageDraw.Draw(img)
@@ -74,7 +74,7 @@ def hex_to_lab(hex_list):
 
 
 # === Figure 生成 ===
-def make_figure(fig, hex_color, l, a, b):
+def plot_graph(fig, hex_color, l, a, b):
 
     # 各色を3Dプロット
     fig.add_trace(go.Scatter3d(
@@ -83,10 +83,10 @@ def make_figure(fig, hex_color, l, a, b):
         marker=dict(size=6, color=hex_color, opacity=1.0),
         text=[hex_color],
         hovertemplate=(
-            f"HEX:{hex_color}<br>"
-            f"L*: {l:6.2f}<br>"
-            f"a*: {a:6.2f}<br>"
-            f"b*: {b:6.2f}<extra></extra>"   
+            f'HEX: {hex_color}<br>'
+            f'L*: {l:6.2f}<br>'
+            f'a*: {a:6.2f}<br>'
+            f'b*: {b:6.2f}'
         )
         #textposition="top center"
     ))
@@ -94,11 +94,11 @@ def make_figure(fig, hex_color, l, a, b):
     # === グラフレイアウト設定 ===
     fig.update_layout(
         title=dict(
-            text="WinterPalette",
-            y=0.95,             # タイトルを上部へ移動，デフォルト0.9
-            x=0.5,              # 中央揃え
-            xanchor="center",   # 中央揃え
-            yanchor="top"       # 上揃え  
+            text='WinterPalette',
+            y=0.95,           # タイトルを上部へ移動，デフォルト0.9
+            x=0.5,            # 中央揃え
+            xanchor='center', # 中央揃え
+            yanchor='top'     # 上揃え  
         ),
         scene=dict(
             xaxis_title='a* 軸',
