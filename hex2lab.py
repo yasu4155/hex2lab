@@ -17,11 +17,12 @@ def main():
     if button:	  
         st.session_state.hex_colors = []
 
+    button = st.sidebar.button('Plot')
+
     # === HEXカラーリスト設定 ===
     # hex_colors = hex_colors()
     hex_color = input_rgb()
 
-    button = st.sidebar.button('Plot')
     if button:
         st.session_state.hex_colors.append(hex_color)
 
