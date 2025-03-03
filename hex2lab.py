@@ -17,7 +17,7 @@ def main():
     if button:	  
         st.session_state.hex_colors = []
 
-    # === HEXカラーリスト（指定された色） ===
+    # === HEXカラーリスト設定 ===
     # hex_colors = init_colors()
     hex_color, flag = input_rgb()
     
