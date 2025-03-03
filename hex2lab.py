@@ -106,7 +106,10 @@ def plot_graph(fig, hex_color, l, a, b):
 
 # === グラフレイアウト設定 ===
 def layout_graph(fig):
-    fig.add_trace(go.Scatter3d())
+    fig.add_trace(go.Scatter3d(
+        x=[0], y=[0], z=[0],
+        marker=dict(size=6, color='#ffffff', opacity=0),
+    ))
     fig.update_layout(
         title=dict(
             text='WinterPalette',
