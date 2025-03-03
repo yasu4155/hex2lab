@@ -29,8 +29,8 @@ def main():
     if button:
         st.session_state.hex_colors.append(hex_color)
 
-        fig = go.Figure()
-        if st.session_state.hex_colors:
+    fig = go.Figure()
+    if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
         lab_colors = hex_to_lab(st.session_state.hex_colors)
 
