@@ -5,13 +5,13 @@ import plotly.graph_objects as go
 from skimage import color
 from PIL import Image, ImageDraw
 
-if 'hex_colors' not in st.session_state: 
-	st.session_state.hex_colors = []
-
 def main():
     # === Streamlit UI ===
     st.title("HEXtoLAB")
     st.header("L\*a\*b\* 色空間の3D可視化とCSV出力")
+
+    if 'hex_colors' not in st.session_state: 
+        st.session_state.hex_colors = []
 
     button = st.sidebar.button('Clear')
     if button:	  
