@@ -40,9 +40,9 @@ def main():
         # === 3Dグラフで可視化 ===
         for i, (l, a, b) in zip(st.session_state.hex_colors, lab_colors):
             fig = plot_graph(fig, i, l, a, b)
+        fig = layout_graph(fig)
 
     # === Streamlitで3Dグラフ表示 ===
-    fig = layout_graph(fig)
     st.subheader("L\*a\*b\* 色空間 3D可視化")
     st.plotly_chart(fig)
     return
