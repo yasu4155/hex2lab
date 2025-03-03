@@ -15,8 +15,7 @@ def main():
 
     # === HEXカラーリスト（指定された色） ===
     # hex_colors = init_colors()
-    button = st.sidebar.button('Plot')
-    if button:
+    if st.sidebar.checkbox('Plot'):
         st.session_state.hex_colors.append(input_rgb())
 
     if st.session_state.hex_colors:
