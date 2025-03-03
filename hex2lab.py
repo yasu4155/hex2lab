@@ -20,7 +20,7 @@ def main():
         hex_color = input_rgb()
     if st.sidebar.checkbox('Pick a color'):	  
         hex_color = pick_rgb()
-    if st.sidebar.checkbox('Clear'):	  
+    if st.sidebar.button('Clear'):	  
         st.session_state.hex_colors = []
     
     if hex_color != []:
