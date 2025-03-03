@@ -63,7 +63,7 @@ def input_rgb():
        st.sidebar.image(img, caption='Palette', use_container_width=True)
     else:
        # === カラーピッカーを用いたRGB入力 ===
-       hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
+       hex_color = st.sidebar.color_picker("Pick a color", "#808080")
        st.sidebar.write("The current color is", hex_color)
     return hex_color
 
