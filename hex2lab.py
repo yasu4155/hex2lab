@@ -19,7 +19,9 @@ def main():
         hex_color = input_rgb()
     if st.sidebar.checkbox('Pick a color'):	  
         hex_color = pick_rgb()
-    st.session_state.hex_colors.append(hex_color)
+
+    if hex_color:
+        st.session_state.hex_colors.append(hex_color)
 
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
