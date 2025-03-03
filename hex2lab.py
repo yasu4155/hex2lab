@@ -15,6 +15,7 @@ def main():
 
     # === HEXカラーリスト（指定された色） ===
     # hex_colors = init_colors()
+    hex_color = '#808080'
     if st.sidebar.checkbox('Input RGB'):
         hex_color = input_rgb()
     if st.sidebar.checkbox('Pick a color'):	  
@@ -55,9 +56,6 @@ def input_rgb():
     draw = ImageDraw.Draw(img)
     draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
     st.sidebar.image(img, caption='Palette', use_container_width=True)
-    
-    # hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
-    # st.sidebar.write("The current color is", hex_color)
     return hex_color
 
 
