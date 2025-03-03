@@ -30,6 +30,7 @@ def main():
         st.session_state.hex_colors.append(hex_color)
 
     fig = go.Figure()
+    fig = layout_graph(fig)
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
         lab_colors = hex_to_lab(st.session_state.hex_colors)
@@ -42,7 +43,6 @@ def main():
             fig = plot_graph(fig, i, l, a, b)
 
     # === Streamlitで3Dグラフ表示 ===
-    fig = layout_graph(fig)
     st.subheader("L\*a\*b\* 色空間 3D可視化")
     st.plotly_chart(fig)
     return
@@ -106,8 +106,6 @@ def plot_graph(fig, hex_color, l, a, b):
 
 # === グラフレイアウト設定 ===
 def layout_graph(fig):
-    fig.add_trace(go.Scatter3d(
-    ))
     fig.update_layout(
         title=dict(
             text='WinterPalette',
