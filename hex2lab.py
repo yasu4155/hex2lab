@@ -14,9 +14,8 @@ def main():
         st.session_state.hex_colors = []
 
     button = st.sidebar.button('Clear')
-    if button:	  
+    if button:
         st.session_state.hex_colors = []
-
     button = st.sidebar.button('Plot')
 
     # === HEXカラーリスト設定 ===
@@ -47,7 +46,8 @@ def main():
 # === RGBカラーを入力する関数 ===
 def input_rgb():
     hex_color = '#808080'
-    if st.sidebar.checkbox('Input RGB'):
+    sel = st.radio('', ('Input RGB', 'Pick color'))
+    if sel = 'Input RGB':
        r = st.sidebar.slider('Red',   0, 255, 128,)
        g = st.sidebar.slider('Green', 0, 255, 128,)
        b = st.sidebar.slider('Blue',  0, 255, 128,)
@@ -58,9 +58,8 @@ def input_rgb():
        draw = ImageDraw.Draw(img)
        draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
        st.sidebar.image(img, caption='Palette', use_container_width=True)
-
-    # === カラーピッカーを用いたRGB入力 ===
-    if st.sidebar.checkbox('Pick color'):
+    else:
+       # === カラーピッカーを用いたRGB入力 ===
        hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
        st.sidebar.write("The current color is", hex_color)
     return hex_color
