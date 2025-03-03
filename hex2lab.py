@@ -1,4 +1,4 @@
-import streamlit as st
+ximport streamlit as st
 import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
@@ -42,6 +42,7 @@ def main():
 
 # === RGBカラーを入力する関数 ===
 def input_rgb():
+    hex_color = '#808080'
     if st.sidebar.checkbox('Input RGB'):
        r = st.sidebar.slider('Red',   0, 255, 128,)
        g = st.sidebar.slider('Green', 0, 255, 128,)
