@@ -42,7 +42,7 @@ def main():
             fig = plot_graph(fig, i, l, a, b)
 
     # === Streamlitで3Dグラフ表示 ===
-    fig = layout_graph()
+    fig = layout_graph(fig)
     st.subheader("L\*a\*b\* 色空間 3D可視化")
     st.plotly_chart(fig)
     return
