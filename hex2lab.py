@@ -45,6 +45,12 @@ def main():
 
 # === RGBカラーを入力する関数 ===
 def input_rgb():
+    button = st.sidebar.button('Plot')
+    if button:
+       flag = True
+    else:
+       flag = False
+
     if st.sidebar.checkbox('Input RGB'):
        r = st.sidebar.slider('Red',   0, 255, 128,)
        g = st.sidebar.slider('Green', 0, 255, 128,)
@@ -61,15 +67,6 @@ def input_rgb():
     if st.sidebar.checkbox('Pick color'):
        hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
        st.sidebar.write("The current color is", hex_color)
-
-    st.sidebar.write('　\n')
-    st.sidebar.write('　\n')
-    st.sidebar.write('　\n')
-    button = st.sidebar.button('Plot')
-    if button:
-       flag = True
-    else:
-       flag = False
     return hex_color, flag
 
 
