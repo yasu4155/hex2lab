@@ -18,7 +18,6 @@ def main():
         st.session_state.hex_colors = []
     button = st.sidebar.button('Undo')
     if button:
-        st.write(st.session_state.hex_colors)
         st.write(st.session_state.hex_colors.pop())
     button = st.sidebar.button('Plot')
 
