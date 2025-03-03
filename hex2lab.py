@@ -49,37 +49,31 @@ def main():
 
 # === RGBカラーを入力する関数 ===
 def input_rgb():
-    flag = False
-    r = st.sidebar.slider('Red',   0, 255, 128,)
-    g = st.sidebar.slider('Green', 0, 255, 128,)
-    b = st.sidebar.slider('Blue',  0, 255, 128,)
-    hex_color = '#{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
-    st.sidebar.write(f'RGB:　({r}, {g}, {b})')
-    st.sidebar.write(f'HEX:　{hex_color}')
+    if st.sidebar.checkbox('Input RGB'):
+       r = st.sidebar.slider('Red',   0, 255, 128,)
+       g = st.sidebar.slider('Green', 0, 255, 128,)
+       b = st.sidebar.slider('Blue',  0, 255, 128,)
+       hex_color = '#{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
+       st.sidebar.write(f'RGB:　({r}, {g}, {b})')
+       st.sidebar.write(f'HEX:　{hex_color}')
+       img = Image.new('RGB', (300, 100), (240, 242, 246))
+       draw = ImageDraw.Draw(img)
+       draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
+       st.sidebar.image(img, caption='Palette', use_container_width=True)
 
-    img = Image.new('RGB', (300, 100), (240, 242, 246))
-    draw = ImageDraw.Draw(img)
-    draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
-    st.sidebar.image(img, caption='Palette', use_container_width=True)
+    # === カラーピッカーを用いたRGB入力 ===
+    if st.sidebar.checkbox('Pick color'):
+       hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
+       st.sidebar.write("The current color is", hex_color)
 
-    button = st.sidebar.button('Plot RGB')
+    st.sidebar.write('　\n')
+    st.sidebar.write('　\n')
+    st.sidebar.write('　\n')
+    button = st.sidebar.button('Plot')
     if button:
-        flag = True
-    return hex_color, flag
-
-
-# === カラーピッカーを用いたRGB入力 ===
-def pick_rgb():
-    flag = False
-    hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
-    st.sidebar.write("The current color is", hex_color)
-
-    st.sidebar.write('　\n')
-    st.sidebar.write('　\n')
-    st.sidebar.write('　\n')
-    button = st.sidebar.button('Plot color')
-    if button:	  
-        flag = True
+       flag = True
+    else:
+       flag = False
     return hex_color, flag
 
 
