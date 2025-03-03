@@ -20,7 +20,7 @@ def main():
     if st.session_state.hex_colors:
         if button:
             st.session_state.hex_colors.pop()
-            button = st.sidebar.button('Plot')
+    button = st.sidebar.button('Plot')
 
     # === HEXカラーリスト設定 ===
     # hex_colors = hex_colors()
