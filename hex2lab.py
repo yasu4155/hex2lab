@@ -17,13 +17,10 @@ def main():
     if button:	  
         st.session_state.hex_colors = []
 
+    hex_color = input_rgb()
     button = st.sidebar.button('Plot')
     if button:
         st.session_state.hex_colors.append(hex_color)
-
-    # === HEXカラーリスト設定 ===
-    # hex_colors = init_colors()
-    hex_color, flag = input_rgb()
 
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
@@ -61,7 +58,7 @@ def input_rgb():
     if st.sidebar.checkbox('Pick color'):
        hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
        st.sidebar.write("The current color is", hex_color)
-    return hex_color, flag
+    return hex_color
 
 
 # === HEXカラーをL*a*b*に変換する関数 ===
