@@ -19,16 +19,11 @@ def main():
 
     button = st.sidebar.button('Plot')
     if button:
-       flag = True
-    else:
-       flag = False
+        st.session_state.hex_colors.append(hex_color)
 
     # === HEXカラーリスト設定 ===
     # hex_colors = init_colors()
     hex_color, flag = input_rgb()
-    
-    if flag:
-        st.session_state.hex_colors.append(hex_color)
 
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
