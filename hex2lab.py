@@ -37,9 +37,9 @@ def main():
         write_csv(lab_colors, st.session_state.hex_colors, 'hex_to_lab_colors.csv')
 
         # === 3Dグラフで可視化 ===
-       fig = go.Figure()
-       fig = layout_graph(fig)
-       for i, (l, a, b) in zip(st.session_state.hex_colors, lab_colors):
+        fig = go.Figure()
+        fig = layout_graph(fig)
+        for i, (l, a, b) in zip(st.session_state.hex_colors, lab_colors):
             fig = plot_graph(fig, i, l, a, b)
     
     # === Streamlitで3Dグラフ表示 ===
