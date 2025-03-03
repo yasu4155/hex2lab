@@ -13,13 +13,14 @@ def main():
     st.title("HEXtoLAB")
     st.header("L\*a\*b\* 色空間の3D可視化とCSV出力")
 
+    button = st.sidebar.button('Clear')
+    if button:	  
+        st.session_state.hex_colors = []
+
     # === HEXカラーリスト（指定された色） ===
     # hex_colors = init_colors()
     hex_color, flag = input_rgb()
     
-    button = st.sidebar.button('Clear')
-    if button:	  
-        st.session_state.hex_colors = []
     
     if flag:
         st.session_state.hex_colors.append(hex_color)
