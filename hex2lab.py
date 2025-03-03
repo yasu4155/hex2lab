@@ -29,7 +29,8 @@ def main():
     if button:
         st.session_state.hex_colors.append(hex_color)
 
-    if st.session_state.hex_colors:
+        fig = go.Figure()
+        if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
         lab_colors = hex_to_lab(st.session_state.hex_colors)
 
@@ -37,7 +38,6 @@ def main():
         write_csv(lab_colors, st.session_state.hex_colors, 'hex_to_lab_colors.csv')
 
         # === 3Dグラフで可視化 ===
-        fig = go.Figure()
         for i, (l, a, b) in zip(st.session_state.hex_colors, lab_colors):
             fig = plot_graph(fig, i, l, a, b)
 
