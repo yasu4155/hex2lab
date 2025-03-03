@@ -13,8 +13,7 @@ def main():
     if 'hex_colors' not in st.session_state: 
         st.session_state.hex_colors = []
 
-    button = st.sidebar.button('Clear')
-    if button:
+    if st.sidebar.button('Clear'):
         st.session_state.hex_colors = []
     button = st.sidebar.button('Undo')
     if st.session_state.hex_colors:
