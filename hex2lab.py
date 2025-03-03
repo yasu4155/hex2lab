@@ -21,7 +21,7 @@ def main():
     if st.sidebar.checkbox('Pick a color'):	  
         hex_color = pick_rgb()
     if st.sidebar.checkbox('Clear'):	  
-        t.session_state.hex_colors = []
+        st.session_state.hex_colors = []
     
     if hex_color != []:
         st.session_state.hex_colors.append(hex_color)
