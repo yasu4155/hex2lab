@@ -16,6 +16,9 @@ def main():
     button = st.sidebar.button('Clear')
     if button:
         st.session_state.hex_colors = []
+    button = st.sidebar.button('Back')
+    if button:
+        st.session_state.hex_colors = []
     button = st.sidebar.button('Plot')
 
     # === HEXカラーリスト設定 ===
