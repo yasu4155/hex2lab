@@ -61,7 +61,7 @@ def input_rgb():
     st.sidebar.image(img, caption='Palette', use_container_width=True)
 
     button = st.sidebar.button('Plot RGB')
-    if button1:	  
+    if button:
         flag = True
     return hex_color, flag
 
@@ -73,7 +73,7 @@ def pick_rgb():
     st.sidebar.write("The current color is", hex_color)
 
     button = st.sidebar.button('Plot color')
-    if button2:	  
+    if button:	  
         flag = True
     return hex_color, flag
 
