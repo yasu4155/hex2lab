@@ -48,7 +48,7 @@ def main():
 
 # === RGBカラーを入力する関数 ===
 def input_rgb():
-#    hex_color = '#808080'
+    hex_color = '#808080'
     sel = st.sidebar.radio('', ('RGB input', 'Color picker'))
     if sel == 'RGB input':
        r = st.sidebar.slider('Red',   0, 255, 128,)
