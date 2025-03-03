@@ -17,7 +17,7 @@ def main():
     # hex_colors = init_colors()
     button = sidebar.button('Plot')
     if button:
-	st.session_state.hex_colors.append(input_rgb())
+        st.session_state.hex_colors.append(input_rgb())
 
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
