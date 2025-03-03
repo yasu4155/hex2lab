@@ -20,7 +20,7 @@ def main():
     if st.sidebar.checkbox('Pick a color'):	  
         hex_color = pick_rgb()
 
-    if hex_color:
+    if hex_color != []:
         st.session_state.hex_colors.append(hex_color)
 
     if st.session_state.hex_colors:
