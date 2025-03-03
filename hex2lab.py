@@ -16,10 +16,8 @@ def main():
     # === HEXカラーリスト（指定された色） ===
     # hex_colors = init_colors()
     hex_color = '#808080'
-    if st.sidebar.checkbox('Input RGB'):
-        hex_color, flag = input_rgb()
-    if st.sidebar.checkbox('Pick a color'):	  
-        hex_color, flag = pick_rgb()
+    hex_color, flag = input_rgb()
+    hex_color, flag = pick_rgb()
     button = st.sidebar.button('Clear')
     if button:	  
         st.session_state.hex_colors = []
