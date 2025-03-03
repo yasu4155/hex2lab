@@ -21,7 +21,6 @@ def main():
     # hex_colors = init_colors()
     hex_color, flag = input_rgb()
     
-    
     if flag:
         st.session_state.hex_colors.append(hex_color)
 
