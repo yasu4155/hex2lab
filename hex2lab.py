@@ -72,7 +72,7 @@ def pick_rgb():
     hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
     st.sidebar.write("The current color is", hex_color)
 
-    button2 = st.sidebar.button('Plot')
+    button2 = st.sidebar.button('Plot2')
     if button2:	  
         flag = True
     return hex_color, flag
