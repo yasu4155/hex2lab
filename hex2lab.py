@@ -5,17 +5,27 @@ import plotly.graph_objects as go
 from skimage import color
 from PIL import Image, ImageDraw
 
-if 'hex_colors' not in st.session_state: 
-	st.session_state.hex_colors = []
-
 def main():
     # === Streamlit UI ===
     st.title("HEXtoLAB")
     st.header("L\*a\*b\* 色空間の3D可視化とCSV出力")
 
-    # === HEXカラーリスト（指定された色） ===
-    # hex_colors = init_colors()
-    st.session_state.hex_colors.append(input_rgb())
+    if 'hex_colors' not in st.session_state: 
+        st.session_state.hex_colors = []
+
+    if st.sidebar.button('Clear'):
+        st.session_state.hex_colors = []
+    if st.sidebar.button('Undo'):
+        if st.session_state.hex_colors:
+            st.session_state.hex_colors.pop()
+    button = st.sidebar.button('Plot')
+
+    # === HEXカラーリスト設定 ===
+    # hex_colors = hex_colors()
+    hex_color = input_rgb()
+
+    if button:
+        st.session_state.hex_colors.append(hex_color)
 
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
@@ -26,40 +36,41 @@ def main():
 
         # === 3Dグラフで可視化 ===
         fig = go.Figure()
+        fig = layout_graph(fig)
         for i, (l, a, b) in zip(st.session_state.hex_colors, lab_colors):
             fig = plot_graph(fig, i, l, a, b)
-
+    
         # === Streamlitで3Dグラフ表示 ===
         st.subheader("L\*a\*b\* 色空間 3D可視化")
         st.plotly_chart(fig)
-
     return
 
 
 # === RGBカラーを入力する関数 ===
 def input_rgb():
-    r = st.sidebar.slider('Red',   0, 255, 128,)
-    g = st.sidebar.slider('Green', 0, 255, 128,)
-    b = st.sidebar.slider('Blue',  0, 255, 128,)
-    hex_color = '#{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
-    st.sidebar.write(f'RGB:　({r}, {g}, {b})')
-    st.sidebar.write(f'HEX:　{hex_color}')
-
-    img = Image.new('RGB', (300, 100), (240, 242, 246))
-    draw = ImageDraw.Draw(img)
-    draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
-    st.sidebar.image(img, caption='Palette', use_container_width=True)
-    
-    # hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
-    # st.sidebar.write("The current color is", hex_color)
-
+    hex_color = '#808080'
+    sel = st.sidebar.radio(' ', ('RGB input', 'Color picker'))
+    if sel == 'RGB input':
+       r = st.sidebar.slider('Red',   0, 255, 128,)
+       g = st.sidebar.slider('Green', 0, 255, 128,)
+       b = st.sidebar.slider('Blue',  0, 255, 128,)
+       hex_color = '#{:02x}'.format(r) + '{:02x}'.format(g) + '{:02x}'.format(b)
+       st.sidebar.write(f'RGB:　({r}, {g}, {b})')
+       st.sidebar.write(f'HEX:　{hex_color}')
+       img = Image.new('RGB', (300, 100), (240, 242, 246))
+       draw = ImageDraw.Draw(img)
+       draw.rectangle([(100, 0), (200, 100)], fill=(r, g, b), outline=None)
+       st.sidebar.image(img, caption='Palette', use_container_width=True)
+    else:
+       # === カラーピッカーを用いたRGB入力 ===
+       hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
+       st.sidebar.write("The current color is", hex_color)
     return hex_color
 
 
 # === HEXカラーをL*a*b*に変換する関数 ===
 def hex_to_lab(hex_list):
- 
-    # 複数のHEXカラーをL*a*b*に一括変換
+     # 複数のHEXカラーをL*a*b*に一括変換
     lab_list = []
     for hex_color in hex_list:
         hex_color = hex_color.lstrip('#')
@@ -69,14 +80,11 @@ def hex_to_lab(hex_list):
         rgb_normalized = np.array([r, g, b]) / 255.0
         lab = color.rgb2lab(rgb_normalized.reshape((1, 1, 3))).reshape(3)
         lab_list.append(lab)
-
     return np.array(lab_list)
 
 
-# === Figure 生成 ===
+# === 各色を3Dプロット ===
 def plot_graph(fig, hex_color, l, a, b):
-
-    # 各色を3Dプロット
     fig.add_trace(go.Scatter3d(
         x=[a], y=[b], z=[l],
         mode='markers+text',
@@ -90,8 +98,11 @@ def plot_graph(fig, hex_color, l, a, b):
         )
         #textposition="top center"
     ))
+    return fig
 
-    # === グラフレイアウト設定 ===
+
+# === グラフレイアウト設定 ===
+def layout_graph(fig):
     fig.update_layout(
         title=dict(
             text='WinterPalette',
