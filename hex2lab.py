@@ -15,8 +15,11 @@ def main():
 
     # === HEXカラーリスト（指定された色） ===
     # hex_colors = init_colors()
-    if st.sidebar.checkbox('Plot'):
-        st.session_state.hex_colors.append(input_rgb())
+    if st.sidebar.checkbox('Input RGB'):
+        hex_color = input_rgb()
+    if st.sidebar.checkbox('Pick a color'):	  
+        hex_color = pick_rgb()
+    st.session_state.hex_colors.append(hex_color)
 
     if st.session_state.hex_colors:
         # === HEX → L*a*b* 変換 ===
@@ -53,7 +56,13 @@ def input_rgb():
     
     # hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
     # st.sidebar.write("The current color is", hex_color)
+    return hex_color
 
+
+# === カラーピッカーを用いたRGB入力 ===
+def pick_rgb():
+    hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
+    st.sidebar.write("The current color is", hex_color)
     return hex_color
 
 
