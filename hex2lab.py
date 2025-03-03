@@ -47,7 +47,7 @@ def main():
 def input_rgb():
     hex_color = '#808080'
     sel = st.radio('', ('Input RGB', 'Pick color'))
-    if sel = 'Input RGB':
+    if sel == 'Input RGB':
        r = st.sidebar.slider('Red',   0, 255, 128,)
        g = st.sidebar.slider('Green', 0, 255, 128,)
        b = st.sidebar.slider('Blue',  0, 255, 128,)
