@@ -70,7 +70,6 @@ def input_rgb():
 
 # === HEXカラーをL*a*b*に変換する関数 ===
 def hex_to_lab(hex_list):
-    
      # 複数のHEXカラーをL*a*b*に一括変換
     lab_list = []
     for hex_color in hex_list:
