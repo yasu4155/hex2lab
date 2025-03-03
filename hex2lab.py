@@ -15,8 +15,8 @@ def main():
 
     if st.sidebar.button('Clear'):
         st.session_state.hex_colors = []
-    if st.session_state.hex_colors:
-        if st.sidebar.button('Undo'):
+    if st.sidebar.button('Undo'):
+        if st.session_state.hex_colors:
             st.session_state.hex_colors.pop()
     button = st.sidebar.button('Plot')
 
