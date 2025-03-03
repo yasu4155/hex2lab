@@ -74,7 +74,9 @@ def pick_rgb():
     hex_color = st.sidebar.color_picker("Pick a color", "#00f900")
     st.sidebar.write("The current color is", hex_color)
 
-    st.sidebar.write('<br><br><br>')
+    st.sidebar.write('　\n')
+    st.sidebar.write('　\n')
+    st.sidebar.write('　\n')
     button = st.sidebar.button('Plot color')
     if button:	  
         flag = True
