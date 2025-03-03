@@ -17,6 +17,12 @@ def main():
     if button:	  
         st.session_state.hex_colors = []
 
+    button = st.sidebar.button('Plot')
+    if button:
+       flag = True
+    else:
+       flag = False
+
     # === HEXカラーリスト設定 ===
     # hex_colors = init_colors()
     hex_color, flag = input_rgb()
@@ -39,18 +45,11 @@ def main():
         # === Streamlitで3Dグラフ表示 ===
         st.subheader("L\*a\*b\* 色空間 3D可視化")
         st.plotly_chart(fig)
-
     return
 
 
 # === RGBカラーを入力する関数 ===
 def input_rgb():
-    button = st.sidebar.button('Plot')
-    if button:
-       flag = True
-    else:
-       flag = False
-
     if st.sidebar.checkbox('Input RGB'):
        r = st.sidebar.slider('Red',   0, 255, 128,)
        g = st.sidebar.slider('Green', 0, 255, 128,)
