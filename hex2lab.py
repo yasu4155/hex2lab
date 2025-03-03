@@ -18,7 +18,8 @@ def main():
         st.session_state.hex_colors = []
     button = st.sidebar.button('Undo')
     if button:
-        st.session_state.hex_colors = st.session_state.hex_colors.pop()
+        hex_colors = st.session_state.hex_colors.pop()
+        st.session_state.hex_colors = hex_colors   
     button = st.sidebar.button('Plot')
 
     # === HEXカラーリスト設定 ===
